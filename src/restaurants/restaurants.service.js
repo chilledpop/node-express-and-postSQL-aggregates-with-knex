@@ -1,11 +1,13 @@
 const knex = require("../db/connection");
 
 function averageRating() {
-  // your solution here
+  // My solution:
+  return knex("restaurants").avg("rating as average_rating");
 }
 
 function count() {
-  // your solution here
+  // My solution:
+  return knex("restaurants").count("restaurant_id");
 }
 
 function create(newRestaurant) {
@@ -26,8 +28,14 @@ function read(restaurant_id) {
   return knex("restaurants").select("*").where({ restaurant_id }).first();
 }
 
-function readHighestRating() {
-  // your solution here
+function readHighestRated() {
+  // My solution:
+  return knex("restaurants")
+    .max("rating")
+    .select("*")
+    .groupBy("restaurant_id")
+    .orderBy("rating", "desc")
+    .first();
 }
 
 function update(updatedRestaurant) {
@@ -44,6 +52,7 @@ module.exports = {
   delete: destroy,
   list,
   read,
-  readHighestRating,
+  readHighestRated,
   update,
+  count,
 };

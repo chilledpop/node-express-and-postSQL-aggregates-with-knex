@@ -17,7 +17,7 @@ router
 
 router
   .route("/highest-rating")
-  .get(controller.readHighestRating)
+  .get(controller.readHighestRated)
   .all(methodNotAllowed);
 
 router
